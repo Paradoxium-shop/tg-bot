@@ -1,14 +1,11 @@
 const TelegramBot = require('node-telegram-bot-api');
 
-// ВСТАВ СЮДИ СВІЙ ТОКЕН
 const TOKEN = '8533729743:AAFWZemowIDF64YOxHldgERZaamVTsfNkBU';
 
-// Створюємо бота з polling
 const bot = new TelegramBot(TOKEN, { polling: true });
 
 console.log('Bot started');
 
-// /start
 bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
 
@@ -35,7 +32,6 @@ bot.onText(/\/start/, (msg) => {
   });
 });
 
-// Обробка кнопок
 bot.on('callback_query', (query) => {
   const chatId = query.message.chat.id;
 
@@ -55,7 +51,7 @@ if (query.data === 'buy') {
     reply_markup: {
       inline_keyboard: [
         [
-          { text: 'Написать', url: 'https://t.me/Paradoxium' }
+          { text: 'Написать', url: 'https://t.me/Paradoxium_NS' }
         ]
       ]
     }
@@ -65,7 +61,7 @@ if (query.data === 'buy') {
 
   if (query.data === 'how') {
     bot.sendMessage(chatId, `
-Пишите администратору — @Paradoxium.
+Пишите администратору — @Paradoxium_NS.
 
 Спрашиваете, что есть,
 делаете оплату и отправляете свой город или улицу — с указанием улицы будет проще.
@@ -75,4 +71,5 @@ if (query.data === 'buy') {
 
   bot.answerCallbackQuery(query.id);
 });
+
 
